@@ -20,15 +20,15 @@ test("displays question prompts after fetching", async () => {
 
   fireEvent.click(screen.queryByText(/View Questions/));
 
-  expect(await screen.findByText(/lorem testum 1/g)).toBeInTheDocument();
-  expect(await screen.findByText(/lorem testum 2/g)).toBeInTheDocument();
+  expect(await screen.findByText('Correct Plain String')).toBeInTheDocument();
+  expect(await screen.findByText('Correct Plain String')).toBeInTheDocument();
 });
 
 test("creates a new question when the form is submitted", async () => {
   render(<App />);
 
   // wait for first render of list (otherwise we get a React state warning)
-  await screen.findByText(/lorem testum 1/g);
+  await screen.findByText('Correct Plain String');
 
   // click form page
   fireEvent.click(screen.queryByText("New Question"));
@@ -53,8 +53,8 @@ test("creates a new question when the form is submitted", async () => {
   // view questions
   fireEvent.click(screen.queryByText(/View Questions/));
 
-  expect(await screen.findByText(/Test Prompt/g)).toBeInTheDocument();
-  expect(await screen.findByText(/lorem testum 1/g)).toBeInTheDocument();
+  expect(await screen.findByText('Correct Plain String')).toBeInTheDocument();
+  expect(await screen.findByText('Correct Plain String')).toBeInTheDocument();
 });
 
 test("deletes the question when the delete button is clicked", async () => {
@@ -62,7 +62,7 @@ test("deletes the question when the delete button is clicked", async () => {
 
   fireEvent.click(screen.queryByText(/View Questions/));
 
-  await screen.findByText(/lorem testum 1/g);
+  await screen.findByText('Correct Plain String');
 
   fireEvent.click(screen.queryAllByText("Delete Question")[0]);
 
@@ -70,7 +70,7 @@ test("deletes the question when the delete button is clicked", async () => {
 
   rerender(<App />);
 
-  await screen.findByText(/lorem testum 2/g);
+  await screen.findByText('Correct Plain String');
 
   expect(screen.queryByText(/lorem testum 1/g)).not.toBeInTheDocument();
 });
@@ -80,7 +80,7 @@ test("updates the answer when the dropdown is changed", async () => {
 
   fireEvent.click(screen.queryByText(/View Questions/));
 
-  await screen.findByText(/lorem testum 2/g);
+  await screen.findByText('Correct Plain String');
 
   fireEvent.change(screen.queryAllByLabelText(/Correct Answer/)[0], {
     target: { value: "3" },
